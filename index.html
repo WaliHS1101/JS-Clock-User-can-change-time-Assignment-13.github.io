@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Digital Clock</title>
+</head>
+
+<body>
+  <h1 id="clock"></h1>
+  <button onclick="setTime()">Set Time</button>
+  <script>
+    let currentTime = new Date();
+
+    function updateTime() {
+      currentTime.setSeconds(currentTime.getSeconds() + 1);
+      const hours = currentTime.getHours();
+      const minutes = currentTime.getMinutes();
+      const seconds = currentTime.getSeconds();
+      const formattedTime = `${hours}:${minutes}:${seconds}`;
+      document.getElementById('clock').innerHTML = formattedTime;
+    }
+
+    function setTime() {
+      const hoursInput = prompt('Please enter the desired hours (0-23)');
+      const minutesInput = prompt('Please enter the desired minutes (0-59)');
+      const secondsInput = prompt('Please enter the desired seconds (0-59)');
+
+      const hours = parseInt(hoursInput);
+      const minutes = parseInt(minutesInput);
+      const seconds = parseInt(secondsInput);
+
+      currentTime = new Date();
+      currentTime.setHours(hours);
+      currentTime.setMinutes(minutes);
+      currentTime.setSeconds(seconds);
+
+      intervalId = setInterval(updateTime, 1000);
+    }
+
+    setInterval(updateTime, 1000);
+
+  </script>
+</body>
+
+</html>
